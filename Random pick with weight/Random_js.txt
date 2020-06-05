@@ -1,0 +1,31 @@
+/**
+ * @param {number[]} w
+ */
+var Solution = function(w) {
+    this.weight=[];
+    this.sum=0;
+    for(let i=0;i<w.length;i++){
+        this.sum+=w[i];
+        this.weight[i]=this.sum;
+    }
+};
+
+/**
+ * @return {number}
+ */
+Solution.prototype.pickIndex = function() {
+    
+    let target=Math.random()*this.sum;
+    for(let i=0;i<this.weight.length;i++){
+        if(target<this.weight[i]){
+            return i;
+        }
+    }
+    
+};
+
+/** 
+ * Your Solution object will be instantiated and called as such:
+ * var obj = new Solution(w)
+ * var param_1 = obj.pickIndex()
+ */
