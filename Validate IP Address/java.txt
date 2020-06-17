@@ -1,0 +1,55 @@
+class Solution {
+    public String validIPAddress(String IP) {
+        
+        if(IP.contains(".")){
+            String[]str=IP.split("\\.",-1);
+            if(str.length<4||str.length>4){
+                return "Neither";
+            }
+            for(String x:str){
+                if(x.length()==0||x.length()>3){
+                    return "Neither";
+                }
+                if(x.charAt(0)=='0'&&x.length()!=1){
+                    return "Neither";
+                }
+                
+                for(char ch:x.toCharArray()){
+                    if(!Character.isDigit(ch)){
+                        return "Neither";
+                    }
+                }
+                if(Integer.parseInt(x)>255){
+                    return "Neither";
+                }
+            }
+            return "IPv4";
+        }
+        
+         if(IP.contains(":")){
+            String[]str=IP.split("\\:",-1);
+            if(str.length<8||str.length>8){
+                return "Neither";
+            }
+            
+            String hex="0123456789ABCDEFabcdef";
+            for(String x:str){
+                System.out.println(x);
+                if(x.length()==0||x.length()>4){
+                    return "Neither";
+                }
+            for (Character ch : x.toCharArray()) {
+                if (hex.indexOf(ch) == -1) return "Neither";
+         }
+
+            
+        }
+             return "IPv6";
+        }
+        
+        
+            return "Neither";
+
+        
+    }
+}

@@ -1,0 +1,50 @@
+/**
+ * @param {string} IP
+ * @return {string}
+ */
+var validIPAddress = function(IP) {
+    if(IP.includes(".")){
+        IP=IP.split('.');
+        if(IP.length<4||IP.length>4){
+        return "Neither";
+    }
+    for(let x of IP){
+        if(x.charAt(0)=='0'&&x.length!=1){
+            return "Neither";
+        }
+        if(+x>255||x==''){
+            
+            return "Neither";
+        }
+        for(let i=0;i<x.length;i++){
+            if(!Number.isInteger(+x.charAt(i))){
+                return "Neither";
+            }
+        }
+        
+    }
+        return "IPv4";
+    }
+    
+    if(IP.includes(":")){
+        let hex="0123456789abcdefABCDEF";
+        IP=IP.split(':');
+        if(IP.length<8||IP.length>8){
+            return "Neither";
+        }
+        for(let x of IP){
+            if (x.length == 0 || x.length > 4) return "Neither";
+            for(let i=0;i<x.length;i++){
+                if(hex.indexOf(x.charAt(i))==-1){
+                    return "Neither";
+                }
+            }
+        }
+        
+        return "IPv6";
+    }
+    return "Neither";
+    
+};
+
+
